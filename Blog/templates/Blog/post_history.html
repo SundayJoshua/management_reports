@@ -1,0 +1,36 @@
+{% extends 'Blog/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<section class="container">
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for post in posts %}
+<div class="col-lg-4 col-md-4" style="padding: 10px;">
+    <div class="box-element">      
+        <h5 class="" style="padding: 4px;">
+            <a href="{% url 'user-posts' post.author.username %}" style="text-decoration: none;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-record-fill" viewBox="0 0 16 16" style="color: orange;">
+                <path fill-rule="evenodd" d="M8 13A5 5 0 1 0 8 3a5 5 0 0 0 0 10z"/>
+              </svg>
+            {{ post.author }}</a>
+        </h5>
+      <div>
+        <!--img src="{{ post.author.profile.image.url }}" class="rounded-circle" alt="..."-->
+        <small class="text-muted"> Posted on {{ post.date_posted }}</small>
+        <div>
+            <small>  
+              <a href="{% url 'post-detail' post.id %}" class="text-warning active" style="text-decoration: none;">Read..</a>
+            </small>
+        </div>
+      </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+
+</section>
+
+{% endblock content %}
+

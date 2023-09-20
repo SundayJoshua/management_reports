@@ -1,0 +1,146 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <link rel="icon" type="image/png" href=".static/img/logo.png" />
+    <title>Management Reports System</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Bootstrap core CSS -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/calendar.css' %}">
+
+
+
+    <style>
+      a {
+          text-transform: capitalize;
+        }
+      div.sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+
+        background-color: #cae8ca;
+      }
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
+
+    <script type="text/javascript">
+      var user = '{{request.user}}'
+
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+      }
+      const csrftoken = getCookie('csrftoken');
+
+      var csrftoken = getToken('csrftoken');
+
+      function getCookie(name) {
+          //split cookie string and get all individual name=value pairs in an array
+          var cookieArr = document.cookie.split(";");
+
+          //loop through the array elements
+          for(var i = 0; i < cookieArr.length; i++) {
+              var cookiePair = cookieArr[i].split("=");
+
+              /* Removing whitespacing at the begining of the cookie name
+              and compare it with the given string */
+            if(name == cookiePair[0].trim()) {
+                // decode the cookie value and return
+                return decodeURIComponent(cookiePair[1]);
+              }
+          }
+
+          //return null if not found
+          return null;
+      }
+      var localStorage = JSON.parse(getCookie('localStorage'))
+      console.log('localStorage': localStorage)
+    </script>
+    <script type="text/javascript">  
+    CKEDITOR.replace( 'editor1', { 
+    enterMode: CKEDITOR.ENTER_BR, 
+    on: {'instanceReady': function (evt) { evt.editor.execCommand('');}},
+    }); 
+    </script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/calendar.js' %}"></script>
+   
+  </head>
+<body onload="myFunction()">
+
+<header class="fixed-top">
+{% include 'Blog/navbar.html' %}
+
+<div class="container">
+
+  <ul class="nav" style="padding: 2px;">
+    {% if user.is_authenticated %}
+
+    {% include 'Blog/sidebar.html' %}
+
+    {% endif %}
+  </ul>
+</div>
+</header>
+  <main id="main" role="main" style=" padding-top: 10px;">
+
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor%}
+          {% endif %}
+
+  <!-- Page content -->
+<div class="content">
+  {% block content %}{% endblock %}
+</div>
+          
+
+  </main>
+
+
+</body>
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>

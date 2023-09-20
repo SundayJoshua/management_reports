@@ -1,0 +1,21 @@
+{% extends 'Blog/base.html' %}
+{% block content %}
+{% load static %}
+
+<section class="container" style="padding: 20px;">
+  <h5 class="title">Pricing Plans</h5>
+  <div class="columns">
+    {% for product in products %}
+      <div class="column">
+        <p class="subtitle">{{ product.name }}</p>
+        {% for plan in product.plan_set.all %}
+          <div>
+            <p class="heading">{{ plan.nickname }}</p>
+            <p>{{ plan.human_readable_price }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock content %}

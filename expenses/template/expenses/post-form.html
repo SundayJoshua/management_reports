@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+
+<section class="container">
+<div class="" style="padding: 10px;">
+	<form method="POST">
+		<div>
+			{% csrf_token %}
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4"><h5>Create an expense report</h5></legend>
+				<small>{{ form|crispy }}</small>
+				<small>{{ content|safe }}</small>
+				<button class="btn btn-outline-info" type="submit"><small>Save</small></button>
+			</fieldset>
+		</div>
+	</form>
+</div>
+</section>
+
+{% endblock content %}
+

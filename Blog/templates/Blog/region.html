@@ -1,0 +1,32 @@
+{% extends 'Blog/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<section class="container" style="padding: 20px;">
+
+<div class="row">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Regional Reports</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for region in regions %}
+    <tr>
+      <td>
+        <small>
+            <a class="text-dark" {% if user.is_superuser %} href="{% url 'regional' region.region_name %}" {% endif %}>{{ region.region_name }}</a>
+        </small>
+        </td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+</div>
+
+</section>
+
+{% endblock content %}
+

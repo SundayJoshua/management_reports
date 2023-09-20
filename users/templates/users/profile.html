@@ -1,0 +1,47 @@
+{% extends 'Blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+<section class="container">
+<div class="row" style="padding: 30px;">
+<div class="col-lg-3" >
+	<div class="content-section box-element bg-light">
+		<div class="media bg-light ">
+			<img class="account-img img-fluid" src="{{ user.profile.image.url }}" width="100">
+		</div>
+		<div>
+			<small>User: {{ user.username }}</small><br>
+			<small>Email: {{ user.email }}</small>		
+		</div>
+	</div>
+</div>
+<div class="col-lg-7">
+<div class="">
+
+<!--from here-->   
+
+<div class="content-section box-element">
+	<form method="POST" enctype="multipart/form-data">
+	{% csrf_token %} 
+	<fieldset class="form-group">
+		<legend>
+			<h4><img class="img-fluid border-right" src="{% static 'img/logo.png' %}" width="140" alt=""> Profile info</h4>
+		</legend>
+		{{ u_form|crispy }}
+
+		{{ p_form|crispy }}
+	</fieldset>
+	<div class="form-group">
+		<p>
+			<small>Update your information:</small>
+			<button class="btn btn-outline-info" type="submit"><small>Save changes</small></button>
+		</p>
+	</div>
+	</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+{% endblock content %}

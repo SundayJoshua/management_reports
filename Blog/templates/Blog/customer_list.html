@@ -1,0 +1,32 @@
+{% extends 'Blog/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<section class="container" style="padding:20px;">
+
+<div class="row">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Customers</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for customer in customers %}
+    <tr>
+      <td>
+        <small>
+            {{ customer.name }}
+        </small>
+        </td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+</div>
+
+</section>
+
+{% endblock content %}
+

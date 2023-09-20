@@ -1,0 +1,131 @@
+{% extends 'Blog/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<section class="container-fluid" style="padding: 30px;">
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+  <form method="POST" action="">
+    {% csrf_token %}
+  <table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col"><small>Evidence</small></th>
+      <th scope="col"><small>Employee</small></th>
+      <th scope="col"><small>Day</small></th>
+      <th scope="col"><small>Criteria</small></th>
+      <th scope="col"><small>Capacity</small></th>
+      <th scope="col"><small>Customer</small></th>
+      <th scope="col"><small>Contact</small></th>
+      <th scope="col"><small>Region</small></th>
+      <th scope="col"><small>State</small></th>
+      <th scope="col"><small></small></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for post in posts %}
+    {{ form.as_p }}
+    <tr>
+      <td><small>
+            <p style="font-weight: bold;">{{ post.evidence }}</p>
+        </small>
+      </td>
+      <td><small>
+          {{ post.author }}
+        </small></td>
+      <td>
+        <small>
+          {{ post.date }}<br>         
+        </small>
+      </td>
+      <td><small>{{ post.criteria }}</small></td>
+      <td><small>{{ post.products_ordered }}</small></td>
+      <td><small>{{ post.customer }}</small></td>
+      <td><small>{{post.contact}}</small></td>
+      <td><small>{{ post.region_name }}</small></td>
+      <td>
+        {% if post.approved %}
+        <div class="form-check">
+          <input type="checkbox" class="styled-checkbox" name="boxes" checked="checked" value={{post.id}}>
+        </div>
+        {% else %}
+        <div class="form-check">
+          <input type="checkbox" class="styled-checkbox" name="boxes" value={{post.id}}>
+        </div>
+        {% endif %} 
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</form>
+</section>
+   <!--Pagination-->
+<section class="container fixed-bottom">
+    <div class="box-element" style="padding: 10px;">
+        <div class="row">
+          <div class="pagination">
+              <span class="step-links">
+                <small style="padding-left: 10px;"> 
+                  {% if page_obj.has_previous %}
+                      <a href="?page=1">&laquo; first</a>
+                      <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                  {% endif %}
+
+                  <span class="current">
+                      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                  </span>
+
+                  {% if page_obj.has_next %}
+                      <a href="?page={{ page_obj.next_page_number }}">next</a>
+                      <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                  {% endif %}
+                </small>
+              </span>
+          </div>
+        </div>
+      </div>
+</section>
+<!--div style="color: #fff;">
+  <div id="img-caption">
+    <h6 class="display-5 text-danger mb-3">
+      Posts by {{ request.user.profile }}
+    </h6>
+  </div>
+      
+
+            {% for post in posts %}
+
+            <div id="hero" class="box-element">
+                {{ form.as_p }}
+                
+              <div class="box-body col-md-12">
+                <div>
+                <img class="img-fluid rounded-circle" src="{{ post.author.profile.image.url }}"> 
+                   <a class="text-right" href="">{{ post.author }}</a>
+                </div>
+                <div>
+                 <h4 class="box-title">
+                   <a class="text-danger" href="{% url 'post-detail' post.id %}">{{ post.title }}</a>
+                  </h4>
+                    <hr class="featurettes">
+                 <p><small class="text-muted">Posted on {{ post.date_posted }}</small></p>
+                <p class="box-text">
+                  {{ post.content }}
+                </p>
+                <a href="#!" class="btn btn-outline-danger">Read</a>
+              </div>
+              </div>
+            </div>
+
+            <hr class="featurettes">
+ 
+            {% endfor %}
+      
+   </div--> 
+{% endblock content %}
+

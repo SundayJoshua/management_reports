@@ -1,0 +1,103 @@
+{% extends 'Blog/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<section class="container">
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+  <table class="table table-stripped table-sm">
+  <thead>
+    <tr>
+      <th scope="col"><small>#</small></th>
+      <th scope="col"><small>Date</small></th>
+      <th scope="col"><small>Day</small></th>
+      <th scope="col"><small>Department</small></th>
+      <th scope="col"><small>Workstation</small></th>
+      <th scope="col"><small>Comment</small></th>
+      <th scope="col"></th>
+      <th scope="col"><small>User</small></th>
+      {% if user.is_authenticated %}
+      <th scope="col"><small>Edit</small></th>
+      <th scope="col"><small></small></th>
+      {% endif %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for post in posts %}
+    {{ form.as_p }}
+    <tr>
+      <th scope="row"><small class="text-muted">{{ post.id }}</small></th>
+      <td><small class="text-muted">Posted on {{ post.date_posted }}</small></td>
+      <td><small class="text-muted">{{ post.day }}</small></td>
+      <td><small class="text-muted">{{ post.department }}</small></td>
+      <td><small class="text-muted">{{ post.title }}</small></td>
+      <td><small><p>{{ post.content }}</p></small></td>
+      <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-gear" viewBox="0 0 16 16">
+            <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm.256 7a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Zm3.63-4.54c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382l.045-.148ZM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z"/>
+          </svg>
+      </td>
+      <td><small><p>{{ post.author }}</p></small></td>
+      {% if user.is_authenticated %}
+      <td><a href="{% url 'post-detail' post.id %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-folder-check" viewBox="0 0 16 16" style="color: orange;">
+              <path d="m.5 3 .04.87a1.99 1.99 0 0 0-.342 1.311l.637 7A2 2 0 0 0 2.826 14H9v-1H2.826a1 1 0 0 1-.995-.91l-.637-7A1 1 0 0 1 2.19 4h11.62a1 1 0 0 1 .996 1.09L14.54 8h1.005l.256-2.819A2 2 0 0 0 13.81 3H9.828a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 6.172 1H2.5a2 2 0 0 0-2 2zm5.672-1a1 1 0 0 1 .707.293L7.586 3H2.19c-.24 0-.47.042-.683.12L1.5 2.98a1 1 0 0 1 1-.98h3.672z"/>
+              <path d="M15.854 10.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.707 0l-1.5-1.5a.5.5 0 0 1 .707-.708l1.146 1.147 2.646-2.647a.5.5 0 0 1 .708 0z"/>
+            </svg>
+          </a>
+      </td>
+      {% endif %}
+      <td>
+        <input class="checkbox" data="{{ post.approved }}" type="checkbox" name="checkbox">
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+<!--div style="color: #fff;">
+  <div id="img-caption">
+    <h6 class="display-5 text-danger mb-3">
+      Posts by {{ request.user.profile }}
+    </h6>
+  </div>
+      
+
+            {% for post in posts %}
+
+            <div id="hero" class="box-element">
+                {{ form.as_p }}
+                
+              <div class="box-body col-md-12">
+                <div>
+                <img class="img-fluid rounded-circle" src="{{ post.author.profile.image.url }}"> 
+                   <a class="text-right" href="">{{ post.author }}</a>
+                </div>
+                <div>
+                 <h4 class="box-title">
+                   <a class="text-danger" href="{% url 'post-detail' post.id %}">{{ post.title }}</a>
+                  </h4>
+                    <hr class="featurettes">
+                 <p><small class="text-muted">Posted on {{ post.date_posted }}</small></p>
+                <p class="box-text">
+                  {{ post.content }}
+                </p>
+                <a href="#!" class="btn btn-outline-danger">Read</a>
+              </div>
+              </div>
+            </div>
+
+            <hr class="featurettes">
+ 
+            {% endfor %}
+      
+   </div-->
+  
+</section>
+{% endblock content %}
+
+

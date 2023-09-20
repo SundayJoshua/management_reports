@@ -1,0 +1,77 @@
+{% extends 'Blog/base.html' %}
+{% block content %}
+{% load static %}
+{% if user.is_authenticated %}
+{% if user.is_superuser %}
+
+<section class="container" style="padding: 30px;">
+
+<div class="row">
+  <h2>Department</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for department in departments %}
+    <tr>
+      <td>
+          <a class="" href="{% url 'group-posts' department.department_name %}" style="color: #000; font-weight: bold;">{{ department.department_name }}</a>        
+        </td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+</div>
+</section>
+{% else %}
+<section class="container" style="padding: 30px;">
+  <div>
+    <h2>Create your report here</h2>
+    <hr>
+  </div>
+
+  <div>
+    <small>
+      <a class="" href="{% url 'post-create' %}">New report</a>
+    </small>
+  </div>
+  <br>
+  <div>
+    <small>
+      <a class="" href="{% url 'post-create' %}">Expenses to report</a>
+    </small>
+  </div>
+</section>
+{% endif %}
+{% else %}
+<section class="container" style="padding-top: 80px;">
+    <div class="row">
+      <div class="col-lg-5 col-md-5 col-sm-5 border-right"> 
+        <div>
+        <h2>Management Reporting System</h2><br>
+        </div>
+        <div>
+          <p>
+            <small>
+              This reporting system provides information- in the shape of reports or statements. This system helps management by providing them with real-time and relevant information.  
+
+              Moreover, management reporting systems assist in capturing data required by managers to run a successful business. This data ranges from employee headcount, financial data, accounts, clients to products, investment performance, client assets held in custody.
+            </small>
+          </p>
+        <a href="{% url 'login' %}" class="">Login</a>
+        </div>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-7">
+        <center>
+        <img class="img-fluid" src="{% static 'img/logo.png' %}" alt="" width="50%">
+        </center>
+      </div> 
+    </div>
+</section>
+{% endif %}
+
+{% endblock content %}
+

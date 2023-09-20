@@ -1,0 +1,58 @@
+{% extends 'Blog/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<section class="container" style="padding-bottom: 20px; padding: 20px;">
+
+<div class="row">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Products list</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for product in products %}
+    <tr>
+      <td>
+        <small>
+            {{product.product_name}}
+        </small>
+        </td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+</div>
+</section>
+    <!--Pagination-->
+<section class="container fixed-bottom">
+    <div class="box-element" style="padding: 10px;">
+        <div class="row">
+            <div class="pagination">
+                <span class="step-links">
+                    <small style="padding-left: 10px;"> 
+                    {% if products.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ products.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ products.number }} of 
+                        {{ products.paginator.num_pages }}.
+                    </span>
+
+                    {% if products.has_next %}
+                            <a href="?page={{ products.next_page_number }}">next</a>
+                            <a href="?page={{ products.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                    </small>
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+

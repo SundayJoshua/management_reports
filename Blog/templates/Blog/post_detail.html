@@ -1,0 +1,31 @@
+{% extends 'Blog/base.html' %}
+{% block content %}
+{% load static %}
+
+
+<section class="container">
+          <div style="padding: 10px;">
+            <div id="hero" class="box-element" >
+                {{ form.as_p }}    
+              <div class="box-body col-md-12">
+                <div>
+                  <img class="img-fluid rounded-circle" src="{{ object.author.profile.image.url }}">
+                  <a class="text-right" href="{% url 'user-posts' post.author.username %}">{{ object.author }}</a>
+                </div>
+                <p class="box-title"><small class="text-muted">Posted on {{ object.date_posted }}</small></p>
+                <p class="box-text">
+                  {{ object.content }}
+                </p>
+                <div>
+                  {% if object.author == user %}
+                    <a href="{% url 'post-update' object.id %}" class="btn btn-outline-secondary">Update</a>
+                    <a href="{% url 'post-delete' object.id %}" class="btn btn-outline-secondary">Delete</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+  
+</section>
+{% endblock content %}
