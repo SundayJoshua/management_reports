@@ -14,13 +14,6 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">
 
 
-
-
-
-<style type="text/css">
-  
-</style>
-
     <style>
       a {
           text-transform: capitalize;
@@ -48,7 +41,6 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
 
     <script type="text/javascript">
       var user = '{{request.user}}'
@@ -122,8 +114,8 @@
   </ul>
 </div>
 </header>
-  <main id="main" role="main" style=" padding-top: 10px;">
-
+  <main id="main" role="main">
+    <div style="padding-top: 60px;">
           {% if messages %}
             {% for message in messages %}
               <div class="alert alert-{{ message.tags }}">
@@ -132,14 +124,12 @@
             {% endfor%}
           {% endif %}
 
-  <!-- Page content -->
-<div class="content">
-  {% block content %}{% endblock %}
-</div>
-          
-
+            <!-- Page content -->
+          <div class="content">
+            {% block content %}{% endblock %}
+          </div>
+    </div>
   </main>
-
 
 </body>
 
