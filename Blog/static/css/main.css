@@ -46,6 +46,10 @@ a {
 
 
 /* *******************************    */
+
+.main {
+  padding-top: 30px;
+}
 .box-element{
   color: #000000;
   background-color: #ffffff;
