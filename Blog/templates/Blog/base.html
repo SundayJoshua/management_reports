@@ -39,6 +39,15 @@
           font-size: 3.5rem;
         }
       }
+      .btn-circle {
+            width: 50px;
+            height: 50px;
+            padding: 10px 16px;
+            border-radius: 35px;
+            text-align: center;
+            font-size: 24px;
+            line-height: 1.33;
+        }
     </style>
     <!-- Custom styles for this template -->
 
@@ -130,12 +139,11 @@
           </div>
     </div>
   </main>
-  <footer class="footer fixed-bottom">
-    <div class="" style="padding: 20px;">
-      {% include 'Blog/mobile-nav.html' %}
-    </div>
-  </footer>
-
+  {% if user.is_authenticated %}
+  <div>
+    {% include 'Blog/mobile-nav.html' %}
+  </div>
+  {% endif %}
 </body>
 
 

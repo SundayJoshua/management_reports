@@ -23,6 +23,7 @@ def img(request):
 			return render(request, 'Blog/home.html', {'form': form})
 
 class PostListView(ListView):
+	paginate_by = 20
 	model = Post
 	template_name = 'Blog/post_history.html'  #<app>/<model>_<viewtype>.html
 	context_object_name = 'posts'
@@ -30,18 +31,21 @@ class PostListView(ListView):
 
 
 class DepartmentPostListView(ListView):
+	paginate_by = 20
 	model = Department
 	template_name = 'Blog/home.html'  #<app>/<model>_<viewtype>.html
 	context_object_name = 'departments'
 
 
 class TaskPostListView(ListView):
+	paginate_by = 20
 	model = Task
 	template_name = 'Blog/criteria.html'  #<app>/<model>_<viewtype>.html
 	context_object_name = 'tasks'
 
 
 class RegionnamesPostListView(ListView):
+	paginate_by = 20
 	model = Region
 	template_name = 'Blog/region.html'  #<app>/<model>_<viewtype>.html
 	context_object_name = 'regions'
