@@ -1,6 +1,6 @@
 {% block content %}
 {% load static %}
-
+{% if user.is_authenticated %}
 <section class="container">
 <div class="row">
   <div class="col-sm-12">
@@ -82,4 +82,5 @@
   </div>    
 </div>
 </section>
+{% endif %}
 {% endblock content %}
