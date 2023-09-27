@@ -3,36 +3,13 @@
 {% load static %}
 
 
-<section class="container" style="padding-bottom: 20px; padding: 20px;">
-
-<div class="row">
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Products list</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for product in products %}
-    <tr>
-      <td>
-        <small>
-            {{product.product_name}}
-        </small>
-        </td>
-    </tr>
-{% endfor %}
-  </tbody>
-</table>
-</div>
-</section>
+<section class="container" style="padding: 20px;">
     <!--Pagination-->
-<section class="container fixed-bottom">
-    <div class="box-element" style="padding: 10px;">
-        <div class="row">
+    <div class="row" style="padding: 5px;">
+        <div> 
             <div class="pagination">
                 <span class="step-links">
-                    <small style="padding-left: 10px;"> 
+                    <small> 
                     {% if products.has_previous %}
                         <a href="?page=1">&laquo; first</a>
                         <a href="?page={{ products.previous_page_number }}">previous</a>
@@ -54,7 +31,27 @@
             </div>
         </div>
     </div>
+<div class="row">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Products list</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for product in products %}
+    <tr>
+      <td>
+        <small>
+            {{product.product_name}}
+        </small>
+        </td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+</div>
 </section>
-
+    
 {% endblock content %}
 

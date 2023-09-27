@@ -3,12 +3,28 @@
 {% load static %}
 
 
-<section class="container-fluid" style="padding: 30px;">
+<section class="container-fluid" style="padding: 20px;">
+<div class="row" style="padding: 5px;">
+    <div class="pagination">
+          <span class="step-links">
+                <small> 
+                  {% if page_obj.has_previous %}
+                      <a href="?page=1">&laquo; first</a>
+                      <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                  {% endif %}
 
+                  <span class="current">
+                      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                  </span>
 
-  <!-- Marketing messaging and featurettes
-  ================================================== -->
-  <!-- Wrap the rest of the page in another container to center all the content. -->
+                  {% if page_obj.has_next %}
+                      <a href="?page={{ page_obj.next_page_number }}">next</a>
+                      <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                  {% endif %}
+                </small>
+          </span>
+     </div>
+  </div>
   <table class="table table-sm table-responsive">
   <thead>
     <tr>
@@ -45,69 +61,6 @@
   </tbody>
 </table>  
 </section>
-  <!--Pagination-->
-<section class="container fixed-bottom">
-    <div class="box-element" style="padding: 10px;">
-        <div class="row">
-          <div class="pagination">
-              <span class="step-links">
-                <small style="padding-left: 10px;"> 
-                  {% if page_obj.has_previous %}
-                      <a href="?page=1">&laquo; first</a>
-                      <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-                  {% endif %}
-
-                  <span class="current">
-                      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                  </span>
-
-                  {% if page_obj.has_next %}
-                      <a href="?page={{ page_obj.next_page_number }}">next</a>
-                      <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-                  {% endif %}
-                </small>
-              </span>
-          </div>
-        </div>
-      </div>
-</section>
-
-<!--div style="color: #fff;">
-  <div id="img-caption">
-    <h6 class="display-5 text-danger mb-3">
-      Posts by {{ request.user.profile }}
-    </h6>
-  </div>
-      
-
-            {% for post in posts %}
-
-            <div id="hero" class="box-element">
-                {{ form.as_p }}
-                
-              <div class="box-body col-md-12">
-                <div>
-                <img class="img-fluid rounded-circle" src="{{ post.author.profile.image.url }}"> 
-                   <a class="text-right" href="">{{ post.author }}</a>
-                </div>
-                <div>
-                 <h4 class="box-title">
-                   <a class="text-danger" href="{% url 'post-detail' post.id %}">{{ post.title }}</a>
-                  </h4>
-                    <hr class="featurettes">
-                 <p><small class="text-muted">Posted on {{ post.date_posted }}</small></p>
-                <p class="box-text">
-                  {{ post.content }}
-                </p>
-                <a href="#!" class="btn btn-outline-danger">Read</a>
-              </div>
-              </div>
-            </div>
-
-            <hr class="featurettes">
- 
-            {% endfor %}
-      
-   </div-->
+  
 {% endblock content %}
 
