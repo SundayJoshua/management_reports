@@ -38,8 +38,7 @@
       <th scope="col"><small>Customer</small></th>
       <th scope="col"><small>Contact</small></th>
       <th scope="col"><small>Region</small></th>
-      <th scope="col"><small>State</small></th>
-      <th scope="col"><small></small></th>
+      <th scope="col"><small>Products</small></th>
     </tr>
   </thead>
   <tbody>
@@ -63,17 +62,7 @@
       <td><small>{{ post.customer }}</small></td>
       <td><small>{{post.contact}}</small></td>
       <td><small>{{ post.region_name }}</small></td>
-      <td>
-        {% if post.approved %}
-        <div class="form-check">
-          <input type="checkbox" class="styled-checkbox" name="boxes" checked="checked" value={{post.id}}>
-        </div>
-        {% else %}
-        <div class="form-check">
-          <input type="checkbox" class="styled-checkbox" name="boxes" value={{post.id}}>
-        </div>
-        {% endif %} 
-      </td>
+      <td><small>{{post.product_name}}</small></td>
     </tr>
     {% endfor %}
   </tbody>

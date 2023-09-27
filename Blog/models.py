@@ -6,7 +6,11 @@ from ckeditor.fields import RichTextField
 
 
 
+class Product(models.Model):
+	product_name = models.CharField(max_length=256, blank=True, null=True)
 
+	def __str__(self):
+		return self.product_name
 
 class Post(models.Model):
 	products_ordered = models.CharField(max_length=100)
@@ -24,16 +28,16 @@ class Post(models.Model):
 	region_name = models.ForeignKey('Region', on_delete=models.SET_NULL, blank=True, null=True)
 	contact = models.CharField(max_length=128, blank=True, null=True)
 
-def __str__(self):
-    return self.title
+	def __str__(self):
+	    return self.title
 
-def product_name(self):
-		return ', '.join([a.product_name for a in self.product.all()])
-		product_name = "Products Orders"
+	def product_name(self):
+			return ', '.join([a.product_name for a in self.product.all()])
+			product_name.short_description = "Products Orders"
 
 
-def get_absolute_url(self):
-    return reverse('post-detail', kwargs={'pk': self.pk})
+	def get_absolute_url(self):
+	    return reverse('post-detail', kwargs={'pk': self.pk})
 
 
 
@@ -87,12 +91,6 @@ class Region(models.Model):
 	def __str__(self):
 		return self.region_name
 
-
-class Product(models.Model):
-	product_name = models.CharField(max_length=256, blank=True, null=True)
-
-	def __str__(self):
-		return self.product_name
 
 
 class Calendar(models.Model):
