@@ -1,0 +1,38 @@
+{% extends "Blog/base.html" %}
+{% block content %}
+{% load static %}
+
+<section class="container">
+	<div class="row">
+
+		<div class="col-lg-7" style="padding-top: 20px;">
+			
+			{% if searched %}
+				
+					<center><h3>You Searched for {{ searched }} </h3></center>					
+			<!--Tunaanza hapa-->
+				<div class="box-element">
+					
+				{% for post in posts %}
+					<div class="box-element" style="padding: 20px;">						
+						<a href="{% url 'user-posts' post.author.username %}" style="text-decoration: none;">
+			              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-record-fill" viewBox="0 0 16 16" style="color: orange;">
+			                <path fill-rule="evenodd" d="M8 13A5 5 0 1 0 8 3a5 5 0 0 0 0 10z"/>
+			              </svg>
+			            {{ post.author }}</a>
+					</div>	
+				{% endfor %}
+			{% else %}
+				<div style="padding-top: 50px;">
+						<center>
+							<h3>We couldn't find the author<br/>
+							you searched for...</h3>
+						</center>
+			   <div>
+			{% endif %}
+		</div>
+	</div>
+</section>
+
+
+{% endblock %}

@@ -9,6 +9,7 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 from .forms import CalendarPlanForm
 from django.contrib.auth.decorators import permission_required
+from django.db.models import Q
 
 
 def img(request):
@@ -35,6 +36,24 @@ class DepartmentPostListView(ListView):
 	model = Department
 	template_name = 'Blog/home.html'  #<app>/<model>_<viewtype>.html
 	context_object_name = 'departments'
+	queryset = Post.objects.all()
+
+	def get_queryset(self):
+		q = self.request.GET.get('q')
+		if q:
+			object_list = self.model.objects.filter(
+				Q(department_name__icontains=q)
+				)
+		else:
+			try:
+				''
+			except Exception as e:
+				raise
+			else:
+				pass
+			object_list = self.model.objects.all()
+		return object_list
+
 
 
 class TaskPostListView(ListView):
@@ -42,6 +61,23 @@ class TaskPostListView(ListView):
 	model = Task
 	template_name = 'Blog/criteria.html'  #<app>/<model>_<viewtype>.html
 	context_object_name = 'tasks'
+	queryset = Post.objects.all()
+
+	def get_queryset(self):
+		q = self.request.GET.get('q')
+		if q:
+			object_list = self.model.objects.filter(
+				Q(criteria__icontains=q)
+				)
+		else:
+			try:
+				''
+			except Exception as e:
+				raise
+			else:
+				pass
+			object_list = self.model.objects.all()
+		return object_list
 
 
 class RegionnamesPostListView(ListView):
@@ -49,6 +85,23 @@ class RegionnamesPostListView(ListView):
 	model = Region
 	template_name = 'Blog/region.html'  #<app>/<model>_<viewtype>.html
 	context_object_name = 'regions'
+	queryset = Post.objects.all()
+
+	def get_queryset(self):
+		q = self.request.GET.get('q')
+		if q:
+			object_list = self.model.objects.filter(
+				Q(region_name__icontains=q)
+				)
+		else:
+			try:
+				''
+			except Exception as e:
+				raise
+			else:
+				pass
+			object_list = self.model.objects.all()
+		return object_list
 
 
 class GroupPostListView(ListView):
@@ -178,7 +231,14 @@ def admin_approval(request):
 
 
 
+def search_view(request):
+	if request.method == "POST":
+		searched = request.POST['searched']
+		posts = Post.objects.filter(name__contains=searched)
+		return render(request, "Blog/results.html", {"searched": searched, "posts": posts})
 
+	else:
+		return render(request, "Blog/results.html", {})
 
 
 
