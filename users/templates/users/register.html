@@ -3,7 +3,8 @@
 {% load static %}
 {% block content %}
 
-<section class="img-bg">
+<section class="img-bg" style="background-image: url('{% static "img/login.jpg" %}'); height: 100%; background-repeat: no-repeat; 
+  background-size: cover; ">
   <div class="container">
     <div class="row">
       <div class="col-lg-6 col-md-6 ">
@@ -28,7 +29,7 @@
             {{ error|escape }}
           </p>
           {% endfor %} {% endif %} {% endfor %}
-          <button type="submit" class="btn btn-sm btn-info mt-2">Sign up</button>
+          <button type="submit" class="btn btn-sm btn-dark mt-2">Sign up</button>
         </form>
         </small>
       </div>

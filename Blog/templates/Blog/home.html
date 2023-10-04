@@ -43,7 +43,9 @@
 </section>
 {% endif %}
 {% else %}
-<section class="container" style="padding-top: 80px;">
+<section style="padding-top: 80px;background-image: url('{% static "img/login.jpg" %}'); height: 100%; background-repeat: no-repeat;
+  background-size: cover; ">
+  <div class="container">
     <div class="row">
       <div class="col-lg-5 col-md-5 col-sm-5 border-right"> 
         <div>
@@ -57,7 +59,7 @@
               Moreover, management reporting systems assist in capturing data required by managers to run a successful business. This data ranges from employee headcount, financial data, accounts, clients to products, investment performance, client assets held in custody.
             </small>
           </p>
-        <a href="{% url 'login' %}" class="">Login</a>
+        <a class="btn btn-outline-dark" href="{% url 'login' %}" class="">Login</a>
         </div>
       </div>
       <div class="col-lg-7 col-md-7 col-sm-7">
@@ -65,6 +67,7 @@
         <img class="img-fluid" src="{% static 'img/logo.png' %}" alt="" width="50%">
         </center>
       </div> 
+    </div>
     </div>
 </section>
 {% endif %}

@@ -3,20 +3,20 @@
 {% load static %}
 {% block content %}
 
-<section class="container">
+<section style="background-image: url('{% static "img/login.jpg" %}'); height: 100%; background-repeat: no-repeat; 
+  background-size: cover; ">
+<div class="container">
 <div class="row">
-	<div class="col-lg-4" style="padding: 60px;"><img class="img-fluid border-right" src="{% static 'img/logo.png' %}"></div>
+	<div class="col-lg-4" style="padding: 60px;"></div>
 	<div class="col-lg-4" style="display: flex; justify-items: center;">
 		<div style="padding: 30px;">
-			<div class="content-section box-element bg-light">
+			<div class="content-section box-element shadow bg-transparent">
 				<div style="padding: 30px;">
 					<center>
-					<div>
-						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-					  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-					  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-					</svg>	
-					Log in
+					<div>	
+					<p>
+						<img class="img-fluid" width="100" src="{% static 'img/logo.png' %}">
+					Log in</p>
 				</div>
 				</center>
 				</div>
@@ -27,7 +27,7 @@
 					{{ form|crispy }}
 				</fieldset>
 				<div class="form-group">
-					<button class="btn btn-outline-info" type="submit"><small>Log in</small></button>
+					<button class="btn btn-outline-dark" type="submit"><small>Log in</small></button>
 					<!--small class="text-muted ml-2">
 						<a href="{% url 'password_reset' %}">Forgot Password?</a>
 					</small-->
@@ -35,7 +35,7 @@
 				</form>
 				<div class="border-top pt-3">
 					<small class="text-muted">
-						Need An Account? <a class="ml-2 btn btn-outline-info" href="{% url 'register' %}">
+						Need An Account? <a class="ml-2 btn btn-outline-dark" href="{% url 'register' %}">
 							<small>Sign Up Now</small>
 						</a>
 					</small>
@@ -43,6 +43,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 </section>
 {% endblock content %}
