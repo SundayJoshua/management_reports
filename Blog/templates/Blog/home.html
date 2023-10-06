@@ -2,34 +2,32 @@
 {% block content %}
 {% load static %}
 {% if user.is_authenticated %}
+
+
+<section class="container" style="padding-top: 30px;">
 {% if user.is_superuser %}
-
-<section class="container" style="padding: 30px;">
-
-<div class="row">
-  <h2>Department</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for department in departments %}
-    <tr>
-      <td>
-          <a class="" href="{% url 'group-posts' department.department_name %}" style="color: #000; font-weight: bold;">{{ department.department_name }}</a>        
-        </td>
-    </tr>
-{% endfor %}
-  </tbody>
-</table>
+<div class="card">
+  <div class="card-header">
+    <h5>Department</h5>
+  </div>
+  <div class="card-body">
+      {% for department in departments %}
+      <div style="padding: 3px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right text-success" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+          <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+        </svg>
+          <a href="{% url 'group-posts' department.department_name %}">{{ department.department_name }}</a>        
+       </div>
+    {% endfor %}
+  </div>
 </div>
 </section>
 {% else %}
-<section class="container" style="padding: 30px;">
+
+<section class="container" style="padding-top: 10px;">
   <div>
-    <h2>Create your report here</h2>
+    <h3>Create your report here</h3>
     <hr>
   </div>
 
@@ -38,10 +36,22 @@
       <a class="" href="{% url 'post-create' %}">New report</a>
     </small>
   </div>
-  <br>
-  
 </section>
-{% endif %}
+  {% endif %}
+
+<section class="container" style="padding-top: 20px;">
+  <div class="card">
+    <div class="card-header">
+      <h5>Analysis</h5>
+    </div>
+    <div class="card-body">
+          <p>Successful reports</p>
+          <h4>{{post_count}}</h4>
+    </div>
+  </div>
+</section>
+
+
 {% else %}
 <section style="padding-top: 80px;background-image: url('{% static "img/login.jpg" %}'); height: 100%; background-repeat: no-repeat;
   background-size: cover; ">
@@ -54,9 +64,7 @@
         <div>
           <p>
             <small>
-              This reporting system provides information- in the shape of reports or statements. This system helps management by providing them with real-time and relevant information.  
-
-              Moreover, management reporting systems assist in capturing data required by managers to run a successful business. This data ranges from employee headcount, financial data, accounts, clients to products, investment performance, client assets held in custody.
+              This reporting system provides information- in the shape of reports or statements. This system helps management by providing them with real-time and relevant information.
             </small>
           </p>
         <a class="btn btn-outline-dark" href="{% url 'login' %}" class="">Login</a>

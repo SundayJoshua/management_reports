@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 from .forms import CalendarPlanForm
 from django.contrib.auth.decorators import permission_required
-from django.db.models import Q
+from django.db.models import Q, Sum
 
 
 def img(request):
@@ -22,6 +22,7 @@ def img(request):
 		else:
 			form = UploadFileForm()
 			return render(request, 'Blog/home.html', {'form': form})
+
 
 class PostListView(ListView):
 	paginate_by = 20
@@ -37,7 +38,8 @@ class DepartmentPostListView(ListView):
 	template_name = 'Blog/home.html'  #<app>/<model>_<viewtype>.html
 	context_object_name = 'departments'
 	queryset = Post.objects.all()
-
+	ordering = ['-department_name']
+	
 	def get_queryset(self):
 		q = self.request.GET.get('q')
 		if q:
@@ -54,6 +56,11 @@ class DepartmentPostListView(ListView):
 			object_list = self.model.objects.all()
 		return object_list
 
+
+	def get_context_data(self, **kwargs):
+		context =super().get_context_data(**kwargs)
+		context["post_count"] = Post.objects.all().count()
+		return context
 
 
 class TaskPostListView(ListView):
@@ -232,13 +239,9 @@ def admin_approval(request):
 
 
 def search_view(request):
-	if request.method == "POST":
-		searched = request.POST['searched']
-		posts = Post.objects.filter(name__contains=searched)
-		return render(request, "Blog/results.html", {"searched": searched, "posts": posts})
+	post_count = Post.objects.all().count()
+	context = {'post_count': post_count}
 
-	else:
-		return render(request, "Blog/results.html", {})
-
+	return render(request, "Blog/home.html", context)
 
 

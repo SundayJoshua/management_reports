@@ -31,6 +31,6 @@ urlpatterns= [
 	path('region_name/', RegionnamesPostListView.as_view(), name='region-name'),
 	path('reginal/<str:region_name>/', RegionalPostListView.as_view(), name='regional'),
 	path('customer_list/', CustomerPostListView.as_view(), name='customer-list'),
-	path("search/", views.search_view, name="search"),
+	path("", views.search_view, name="home"),
 ]
 
