@@ -60,6 +60,9 @@ class DepartmentPostListView(ListView):
 	def get_context_data(self, **kwargs):
 		context =super().get_context_data(**kwargs)
 		context["post_count"] = Post.objects.all().count()
+		context["user_count"] = User.objects.all().count()
+		context["customer_count"] = Customer.objects.all().count()
+		context["product_count"] = Product.objects.all().count()
 		return context
 
 
