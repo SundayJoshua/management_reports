@@ -87,14 +87,6 @@
       var localStorage = JSON.parse(getCookie('localStorage'))
       console.log('localStorage': localStorage)
     </script>
-    <script type="text/javascript">  
-    CKEDITOR.replace( 'editor1', { 
-    enterMode: CKEDITOR.ENTER_BR, 
-    on: {'instanceReady': function (evt) { evt.editor.execCommand('');}},
-    }); 
-    </script>
-    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
-    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
     <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/calendar.js' %}"></script>
    
