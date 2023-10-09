@@ -29,7 +29,7 @@ class Post(models.Model):
 	contact = models.CharField(max_length=128, blank=True, null=True)
 
 	def __str__(self):
-	    return self.title
+	    return self.date_posted
 
 	def product_name(self):
 			return ', '.join([a.product_name for a in self.product.all()])
@@ -38,18 +38,6 @@ class Post(models.Model):
 
 	def get_absolute_url(self):
 	    return reverse('post-detail', kwargs={'pk': self.pk})
-
-	@property
-	def get_sum(self):
-		total = sum([self.post_id])
-		return total
-
-	@property
-	def get_post_total(self):
-		posts = self.Post_set.all()
-		total = sum([post.get_total for post in posts])
-		return total
-
 
 
 class Blogtitle(models.Model):
