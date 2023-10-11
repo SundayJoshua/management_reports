@@ -96,18 +96,19 @@
 <header class="fixed-top" style="padding-bottom: 30px;">
 {% include 'Blog/navbar.html' %}
 
-<div class="container">
-
-  <ul class="nav" style="padding: 2px;">
-    {% if user.is_authenticated %}
-
-    {% include 'Blog/sidebar.html' %}
-
-    {% endif %}
-  </ul>
-</div>
 </header>
   <main id="main" role="main">
+    <div class="container">
+
+      <ul class="nav" style="padding: 2px;">
+        {% if user.is_authenticated %}
+
+        {% include 'Blog/sidebar.html' %}
+
+        {% endif %}
+      </ul>
+    </div>
+    
     <div style="padding-top: 60px;">
           {% if messages %}
             {% for message in messages %}
