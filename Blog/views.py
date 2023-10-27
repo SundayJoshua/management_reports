@@ -10,6 +10,7 @@ from django.contrib import messages
 from .forms import CalendarPlanForm
 from django.contrib.auth.decorators import permission_required
 from django.db.models import Q, Sum
+from django.core.mail import send_mail
 
 
 def img(request):
@@ -181,6 +182,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 		"""If the form is valid, redirect to the supplied URL."""
 		"""return HttpResponseRedirect(self.get_success_url('home')) """
+
 		
         
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

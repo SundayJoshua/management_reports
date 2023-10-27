@@ -10,6 +10,8 @@
       </div>
   </li>
   <a class="navbar-brand" href="{% url 'home' %}"><img class="img-fluid" src="{% static 'img/logo.png' %}" width="80" alt=""></a>
+  <!--Search Bar inaanzia hapa-->
+   
 
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <center>
@@ -55,6 +57,7 @@
           </a>
         </form>
       </li>
+      
       {% else %}
        <li class="nav-item">
         <a class="nav-link" title="Login" href="{% url 'login' %}">

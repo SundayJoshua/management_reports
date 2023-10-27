@@ -87,11 +87,11 @@ WSGI_APPLICATION = 'management_reports.wsgi.application'
 DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'railway', 
+            'NAME': 'testdb', 
             'USER': 'postgres',
-            'PASSWORD': 's4NxOLgG8NWQ83xAqsBO',
-            'HOST': 'containers-us-west-134.railway.app', 
-            'PORT': '6440',
+            'PASSWORD': 'admin',
+            'HOST': '194.195.208.238', 
+            'PORT': '5432',
     }
 }
 
@@ -166,4 +166,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOSTS_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOSTS_PASSWORD = os.environ.get('EMAIL_PASS')
+
 
